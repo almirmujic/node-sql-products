@@ -6,6 +6,8 @@ require('dotenv').config()
 
 const app = express();
 
+const SELECT_ALL_PRODUCTS = 'SELECT * FROM `products`';
+
 const connection = mysql.createConnection({
     host: 'localhost',
     user: process.env.DB_USER,
@@ -15,6 +17,7 @@ const connection = mysql.createConnection({
 
 connection.connect(error => {
     if (error) {
+        console.log(error);
         return error;
     }
 });
@@ -28,7 +31,15 @@ app.get('/', (req, res) => {
 })
 
 app.get('/products', (req, res) => {
-
+    connection.query(SELECT_ALL_PRODUCTS, (err, result) => {
+        if (err) {
+            return res.send(err);
+        } else {
+            return res.json({
+                data: result
+            })
+        }
+    })
 })
 
 app.listen(process.env.PORT, () => {
