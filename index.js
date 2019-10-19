@@ -42,6 +42,21 @@ app.get('/products', (req, res) => {
     })
 })
 
+app.get('/products/add', (req, res) => {
+    const item = req.query.item;
+    const price = req.query.price;
+    const INSERT_PRODUCT_QUERY = `INSERT INTO products (item, price) VALUES('${item}','${price}')`;
+
+    connection.query(INSERT_PRODUCT_QUERY, (err, result) => {
+        if (err) {
+            return res.send(err);
+        } else {
+            return res.send('Item successfully added.')
+        }
+    });
+
+})
+
 app.listen(process.env.PORT, () => {
     console.log(`Server listening on port 4000`);
 })
