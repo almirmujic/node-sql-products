@@ -5,7 +5,7 @@ class App extends Component {
   state = {
     products: [],
     product: {
-      name: '',
+      item: '',
       price: 0,
     }
   }
@@ -26,6 +26,14 @@ class App extends Component {
     console.log(this.state.product);
   }
 
+  addProduct = e => {
+    e.preventDefault();
+    const { product } = this.state;
+    fetch(`http://localhost:4000/products/add?item=${product.item}&price=${product.price}`)
+      .then(this.fetchProducts);
+    this.setState({ product: { item: '', price: 0 } });
+  }
+
   render() {
     const { products, product } = this.state
     return (
@@ -35,9 +43,9 @@ class App extends Component {
             {products.map(product => <li key={product.product_id}>{product.item} is ${product.price}</li>)}
           </ul>
           <form>
-            <input type="text" value={product.name} onChange={e => this.setState({ product: { ...product, name: e.target.value } })} />
+            <input type="text" value={product.item} onChange={e => this.setState({ product: { ...product, item: e.target.value } })} />
             <input type="text" value={product.price} onChange={e => this.setState({ product: { ...product, price: e.target.value } })} />
-            <button onClick={this.logProduct}>Submit</button>
+            <button onClick={this.addProduct}>Submit</button>
           </form>
         </header>
       </div>
