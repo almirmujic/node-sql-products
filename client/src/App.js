@@ -13,7 +13,7 @@ class App extends Component {
   fetchProducts = () => {
     fetch('http://localhost:4000/products')
       .then(response => response.json())
-      .then(response => this.setState({ products: response.data }))
+      .then(({ data }) => this.setState({ products: data }))
       .catch(err => console.error(err))
   }
 
