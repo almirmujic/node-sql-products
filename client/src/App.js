@@ -34,13 +34,18 @@ class App extends Component {
       .then(this.setState({ product: { item: '', price: 0 } }));
   }
 
+  deleteProduct = productItem => {
+    fetch(`http://localhost:4000/products/delete?item=${productItem}`)
+      .then(this.fetchProducts)
+  }
+
   render() {
     const { products, product } = this.state
     return (
       <div className="App" >
         <header className="App-header">
           <ul>
-            {products.map(product => <li key={product.product_id}>{product.item} is ${product.price}</li>)}
+            {products.map(product => <li key={product.product_id}>{product.item} is ${product.price}<button onClick={() => this.deleteProduct(product.item)}>x</button></li>)}
           </ul>
           <form>
             <input type="text" value={product.item} onChange={e => this.setState({ product: { ...product, item: e.target.value } })} />
