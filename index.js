@@ -57,6 +57,20 @@ app.get('/products/add', (req, res) => {
 
 })
 
+app.get('/products/delete', (req, res) => {
+    const item = req.query.item;
+    console.log(item);
+    const DELETE_PRODUCT_QUERY = `DELETE FROM products WHERE item='${item}' AND product_id<>0`;
+
+    connection.query(DELETE_PRODUCT_QUERY, (err, result) => {
+        if (err) {
+            return res.send(err);
+        } else {
+            return res.send('Item successsfully deleted.');
+        }
+    });
+})
+
 app.listen(process.env.PORT, () => {
     console.log(`Server listening on port 4000`);
 })
