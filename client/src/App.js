@@ -30,8 +30,8 @@ class App extends Component {
     e.preventDefault();
     const { product } = this.state;
     fetch(`http://localhost:4000/products/add?item=${product.item}&price=${product.price}`)
-      .then(this.fetchProducts);
-    this.setState({ product: { item: '', price: 0 } });
+      .then(this.fetchProducts)
+      .then(this.setState({ product: { item: '', price: 0 } }));
   }
 
   render() {
