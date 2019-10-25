@@ -20,3 +20,43 @@
 .App-link {
   color: #09d3ac;
 }
+
+ul{
+  padding: 0;
+}
+
+li{
+  /* list-style: none; */
+  display: flex;
+  align-items: center;
+}
+
+li button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  margin: 1em;
+}
+
+.Form{
+  display: flex;
+  flex-direction: column;
+}
+
+.Form button{
+  margin: 1em;
+  padding: .5em;
+  border-radius: 25px;
+}
+
+input{
+  all: unset;
+  background-color: rgb(34, 35, 41);
+  border-radius: 25px;
+  padding: .5em;
+  margin: .2em;
+
+}
