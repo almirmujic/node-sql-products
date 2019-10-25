@@ -6,7 +6,7 @@ class App extends Component {
     products: [],
     product: {
       item: '',
-      price: 0,
+      price: '',
     }
   }
 
@@ -31,7 +31,7 @@ class App extends Component {
     const { product } = this.state;
     fetch(`http://localhost:4000/products/add?item=${product.item}&price=${product.price}`)
       .then(this.fetchProducts)
-      .then(this.setState({ product: { item: '', price: 0 } }));
+      .then(this.setState({ product: { item: '', price: '' } }));
   }
 
   deleteProduct = productItem => {
@@ -45,11 +45,17 @@ class App extends Component {
       <div className="App" >
         <header className="App-header">
           <ul>
-            {products.map(product => <li key={product.product_id}>{product.item} is ${product.price}<button onClick={() => this.deleteProduct(product.item)}>x</button></li>)}
+            {
+              products.map(({ product_id, item, price }) => item.endsWith('s') ?
+                <li key={product_id}>{item} are ${price}<button onClick={() => this.deleteProduct(item)}>x</button></li>
+                :
+                <li key={product_id}>{item} is ${price}<button onClick={() => this.deleteProduct(item)}>x</button></li>
+              )
+            }
           </ul>
-          <form>
-            <input type="text" value={product.item} onChange={e => this.setState({ product: { ...product, item: e.target.value } })} />
-            <input type="text" value={product.price} onChange={e => this.setState({ product: { ...product, price: e.target.value } })} />
+          <form className="Form">
+            <input type="text" value={product.item} placeholder='Enter item name' onChange={e => this.setState({ product: { ...product, item: e.target.value } })} />
+            <input type="text" value={product.price} placeholder='Enter price' onChange={e => this.setState({ product: { ...product, price: e.target.value } })} />
             <button onClick={this.addProduct}>Submit</button>
           </form>
         </header>
