@@ -27,5 +27,9 @@ describe('<App />', () => {
     const input = wrapper.find(`[data-type='item-input']`);
     expect(input.length).toBe(1);
   })
+  it('renders price input', () => {
+    const input = wrapper.find(`[data-type='price-input']`);
+    expect(input.length).toBe(1);
+  })
   console.log(wrapper.debug())
 })
