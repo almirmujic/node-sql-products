@@ -23,5 +23,9 @@ describe('<App />', () => {
     const form = wrapper.find(`[data-test='Form']`);
     expect(form.length).toBe(1);
   })
+  it('renders item input', () => {
+    const input = wrapper.find(`[data-type='item-input']`);
+    expect(input.length).toBe(1);
+  })
   console.log(wrapper.debug())
 })
