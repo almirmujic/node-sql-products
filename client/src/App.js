@@ -47,16 +47,16 @@ class App extends Component {
           <ul>
             {
               products.map(({ product_id, item, price }) => item.endsWith('s') ?
-                <li key={product_id}>{item} are ${price}<button onClick={() => this.deleteProduct(item)}>x</button></li>
+                <li data-type="list-item" key={product_id}>{item} are ${price}<button onClick={() => this.deleteProduct(item)}>x</button></li>
                 :
-                <li key={product_id}>{item} is ${price}<button onClick={() => this.deleteProduct(item)}>x</button></li>
+                <li data-type="list-item" key={product_id}>{item} is ${price}<button onClick={() => this.deleteProduct(item)}>x</button></li>
               )
             }
           </ul>
           <form className="Form" data-test="Form">
             <input type="text" data-type='item-input' value={product.item} placeholder='Enter item name' onChange={e => this.setState({ product: { ...product, item: e.target.value } })} />
             <input type="text" data-type='price-input' value={product.price} placeholder='Enter price' onChange={e => this.setState({ product: { ...product, price: e.target.value } })} />
-            <button onClick={this.addProduct}>Submit</button>
+            <button data-type='add-product' onClick={this.addProduct}>Submit</button>
           </form>
         </header>
       </div>
