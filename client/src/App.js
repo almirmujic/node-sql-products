@@ -53,9 +53,9 @@ class App extends Component {
               )
             }
           </ul>
-          <form className="Form">
-            <input type="text" value={product.item} placeholder='Enter item name' onChange={e => this.setState({ product: { ...product, item: e.target.value } })} />
-            <input type="text" value={product.price} placeholder='Enter price' onChange={e => this.setState({ product: { ...product, price: e.target.value } })} />
+          <form className="Form" data-test="Form">
+            <input type="text" data-type='item-input' value={product.item} placeholder='Enter item name' onChange={e => this.setState({ product: { ...product, item: e.target.value } })} />
+            <input type="text" data-type='price-input' value={product.price} placeholder='Enter price' onChange={e => this.setState({ product: { ...product, price: e.target.value } })} />
             <button onClick={this.addProduct}>Submit</button>
           </form>
         </header>
