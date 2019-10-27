@@ -13,10 +13,15 @@ const wrapper = shallow(<App />);
 
 describe('<App />', () => {
   it('renders', () => {
-    wrapper;
+    expect(wrapper).toBeTruthy();
   })
   it('renders a ul', () => {
     const ul = <ul></ul>;
     expect(wrapper.contains(ul)).toEqual(true);
   })
+  it('renders a form', () => {
+    const form = wrapper.find(`[data-test='Form']`);
+    expect(form.length).toBe(1);
+  })
+  console.log(wrapper.debug())
 })
