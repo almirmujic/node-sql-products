@@ -11,6 +11,11 @@ it('renders without crashing', () => {
 
 const wrapper = shallow(<App />);
 
+const testRender = (dataTestTag) => {
+  const dataTestItem = wrapper.find(dataTestTag)
+  expect(dataTestItem.length).toBe(1);
+}
+
 describe('<App />', () => {
   it('renders', () => {
     expect(wrapper).toBeTruthy();
@@ -20,16 +25,13 @@ describe('<App />', () => {
     expect(wrapper.contains(ul)).toEqual(true);
   })
   it('renders a form', () => {
-    const form = wrapper.find(`[data-test='Form']`);
-    expect(form.length).toBe(1);
+    testRender(`[data-test='Form']`);
   })
   it('renders item input', () => {
-    const input = wrapper.find(`[data-type='item-input']`);
-    expect(input.length).toBe(1);
+    testRender(`[data-type='item-input']`);
   })
   it('renders price input', () => {
-    const input = wrapper.find(`[data-type='price-input']`);
-    expect(input.length).toBe(1);
+    testRender(`[data-type='price-input']`);
   })
   console.log(wrapper.debug())
 })
