@@ -22,8 +22,6 @@ connection.connect(error => {
     }
 });
 
-// console.log(connection);
-
 app.use(cors());
 
 app.get('/', (req, res) => {
