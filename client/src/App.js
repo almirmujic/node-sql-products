@@ -21,11 +21,6 @@ class App extends Component {
       .catch(err => console.error(err))
   }
 
-  logProduct = e => {
-    e.preventDefault();
-    console.log(this.state.product);
-  }
-
   addProduct = e => {
     e.preventDefault();
     const { product } = this.state;
