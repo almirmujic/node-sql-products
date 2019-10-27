@@ -33,5 +33,9 @@ describe('<App />', () => {
   it('renders price input', () => {
     testRender(`[data-type='price-input']`);
   })
+  it('clicks successfully', () => {
+    wrapper.find(`[data-type='add-product']`).simulate('click', { preventDefault: () => { } });
+    expect(wrapper.find(`[data-type='list-item']`)).toBeTruthy();
+  })
   console.log(wrapper.debug())
 })
