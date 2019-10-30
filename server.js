@@ -69,6 +69,6 @@ app.get('/products/delete', (req, res) => {
     });
 })
 
-app.listen(process.env.PORT, () => {
+app.listen(4000, () => {
     console.log(`Server listening on port 4000`);
 })
